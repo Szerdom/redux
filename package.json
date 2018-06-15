@@ -1,0 +1,23 @@
+{
+  "name": "u-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Szerdom/react.git"
+  },
+  "author": "Dominik Szeremeta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Szerdom/react/issues"
+  },
+  "homepage": "https://github.com/Szerdom/react#readme",
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  }
+}
