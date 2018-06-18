@@ -1,12 +1,12 @@
 console.log("Hi!");
 
-var app = {
+const app = {
     title: 'Title',
     subtitle: 'Subtitle',
     options: ['One', 'Two']
 };
 
-var firstTemplate = (
+const firstTemplate = (
     <div>
         <h1>{app.title}</h1>
         {app.subtitle && <p>{app.subtitle}</p>}
@@ -20,18 +20,41 @@ let getLocation = (location) => {
     }
 };
 
-let user = {
-    name: 'Dominik',
-    age: 24,
-    //location: 'GDA'
+let count = 0;
+const addOne = () => {
+    count++;
+    console.log('add One');
+    renderCounter();
 };
-var newTemplate = (
-    <div>
-        <h1>Dominik</h1>
-        <p>Age: 24</p>
-        {getLocation(user.location)}
-    </div>
-);
+const minusOne = () => {
+    count--;
+    console.log('minus one');
+    renderCounter();
+};
+const reset = () => {
+    count = 0;
+    console.log('reset');
+    renderCounter();
+};
+const show = () => {
+    console.log(count);
+    renderCounter();
+};
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(firstTemplate, appRoot);
+
+const renderCounter = () => {
+    const templateTwo = (
+        <div>
+            <h1>Count: {count}</h1>
+            <button onClick={addOne}>+1</button>
+            <button onClick={minusOne}>-1</button>
+            <button onClick={reset}>reset</button>
+            <button onClick={show}>show</button>
+        </div>
+    );
+
+    ReactDOM.render(templateTwo, appRoot);
+}
+
+renderCounter();

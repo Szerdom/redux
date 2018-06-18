@@ -38,26 +38,62 @@ var getLocation = function getLocation(location) {
     }
 };
 
-var user = {
-    name: 'Dominik',
-    age: 24
-    //location: 'GDA'
+var count = 0;
+var addOne = function addOne() {
+    count++;
+    console.log('add One');
+    renderCounter();
 };
-var newTemplate = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'Dominik'
-    ),
-    React.createElement(
-        'p',
-        null,
-        'Age: 24'
-    ),
-    getLocation(user.location)
-);
+var minusOne = function minusOne() {
+    count--;
+    console.log('minus one');
+    renderCounter();
+};
+var reset = function reset() {
+    count = 0;
+    console.log('reset');
+    renderCounter();
+};
+var show = function show() {
+    console.log(count);
+    renderCounter();
+};
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(firstTemplate, appRoot);
+
+var renderCounter = function renderCounter() {
+    var templateTwo = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Count: ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: addOne },
+            '+1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: minusOne },
+            '-1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            'reset'
+        ),
+        React.createElement(
+            'button',
+            { onClick: show },
+            'show'
+        )
+    );
+
+    ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounter();
