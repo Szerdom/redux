@@ -6,6 +6,11 @@ const app = {
     options: []
 };
 
+const removeOptions = () => {
+    app.options = [];
+    renderTemplate();
+}
+
 const onFormSubmit = (e) => {
     e.preventDefault();
     const option = e.target.elements.option.value;
@@ -25,6 +30,7 @@ const renderTemplate = () => {
             {app.subtitle && <p>{app.subtitle}</p>}
             <p>{(app.options && app.options.length > 0) ? "Here you are" : "None"}</p>
             <p>{app.options.length}</p>
+            <button onClick={removeOptions}>Remove ALL</button>
             <ol>
     
             </ol>

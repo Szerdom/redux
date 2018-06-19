@@ -8,6 +8,11 @@ var app = {
     options: []
 };
 
+var removeOptions = function removeOptions() {
+    app.options = [];
+    renderTemplate();
+};
+
 var onFormSubmit = function onFormSubmit(e) {
     e.preventDefault();
     var option = e.target.elements.option.value;
@@ -43,6 +48,11 @@ var renderTemplate = function renderTemplate() {
             'p',
             null,
             app.options.length
+        ),
+        React.createElement(
+            'button',
+            { onClick: removeOptions },
+            'Remove ALL'
         ),
         React.createElement('ol', null),
         React.createElement(
