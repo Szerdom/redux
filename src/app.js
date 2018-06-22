@@ -1,14 +1,53 @@
 class IndecisionApp extends React.Component{
+    constructor(props){
+        super(props);
+        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+        this.handleAddOption = this.handleAddOption.bind(this);
+        this.handlePick = this.handlePick.bind(this);
+        this.state = {
+            options: []
+        }
+    }
+
+    handleAddOption(value){
+        if(!value){
+            return 'no value';
+        } else if (this.state.options.includes(value)){
+            return 'value exists';
+        }
+        this.setState((prevState) => {
+            return {
+                options: [...prevState.options, value]
+            }
+        });
+    }
+
+    handleDeleteOptions(){
+        this.setState(() => {
+            return {
+                options: []
+            };
+        });
+    }
+
+    handlePick(){
+        const random = Math.floor(Math.random() * this.state.options.length);
+        const rndValue = this.state.options[random];
+        alert(rndValue);
+    }
+
     render() {
         const title = 'tytul';
         const subtitle = 'podtytul';
-        const options = ['Jeden', 'dwa', 'trzy'];
         return (
             <div>
                 <Header title={title} subtitle={subtitle}/>
-                <Action />
-                <Options options={options}/>
-                <AddOption />
+                <Action hasOption={this.state.options.length > 0}
+                        handlePick={this.handlePick}/>
+                <Options options={this.state.options}
+                        handleDeleteOptions={this.handleDeleteOptions}/>
+                <AddOption options={this.state.options}
+                        handleAddOption={this.handleAddOption}/>
             </div>
         );
     }
@@ -26,30 +65,26 @@ class Header extends React.Component{
 }
 
 class Action extends React.Component{
-    handlePick(){
-        alert('handlePick');
+    constructor(props){
+        super(props);
     }
     render() {
         return (
             <div>
-                <button onClick={this.handlePick}>What should I do?</button>
+                <button 
+                    disabled={!this.props.hasOption}
+                    onClick={this.props.handlePick}>
+                What should I do?</button>
             </div>
         );
     }
 }
 
 class Options extends React.Component {
-    constructor(props){
-        super(props);
-        this.removeOptions = this.removeOptions.bind(this);
-    }
-    removeOptions(){
-        console.log(this.props.options)
-    }
     render (){
         return(
             <div>
-                <button onClick={this.removeOptions.bind(this)}>Remove All</button>
+                <button onClick={this.props.handleDeleteOptions}>Remove All</button>
                 {
                     this.props.options.map((option) => <Option key={option} optionText={option} />)
                 }
@@ -59,19 +94,33 @@ class Options extends React.Component {
 }
 
 class AddOption extends React.Component{
-    addOption(e){
+    constructor(props){
+        super(props);
+        this.handleAddOption = this.handleAddOption.bind(this);
+        this.state = {
+            error: undefined
+        }
+    }
+    handleAddOption(){
         e.preventDefault();
         const value = e.target.elements.option.value.trim();
-        if(value){
-            alert(value);
+        const error = this.props.handleAddOption(value);
+        if (error){
+            this.setState(() => {
+                error
+            });
         }
+        e.target.elements.option.value = '';
     }
     render (){
         return(
-            <form onSubmit={this.addOption}>
-                <input type='text' name='option' />
-                <button>Submit</button>
-            </form>
+            <div>
+                {this.state.error && <h1>{this.state.error}</h1>}
+                <form onSubmit={this.handleAddOption}>
+                    <input type='text' name='option' />
+                    <button>Submit</button>
+                </form>
+            </div>
         );
     }
 }

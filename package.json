@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "babel-watch": "babel src/playground/build-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch"
+    "babel-watch": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
   },
   "repository": {
     "type": "git",
