@@ -15,19 +15,26 @@ class IndecisionApp extends React.Component{
         } else if (this.state.options.indexOf(value) > -1){
             return 'value exists';
         }
-        this.setState((prevState) => {
+        /*this.setState((prevState) => {
             return {
                 options: [...prevState.options, value]
             }
-        });
+        });*/
+        this.setState((prevState) => ({
+            options: [...prevState.options, value]
+        }));
     }
 
     handleDeleteOptions(){
-        this.setState(() => {
+        /*this.setState(() => {
             return {
                 options: []
             };
-        });
+        });*/
+
+        this.setState(() => ({
+            options: []
+        }));
     }
 
     handlePick(){
@@ -137,9 +144,12 @@ class AddOption extends React.Component{
         const value = e.target.elements.option.value.trim();
         const error = this.props.handleAddOption(value);
         if (error){
-            this.setState(() => {
+            /*this.setState(() => {
                 return { error };
-            });
+            });*/
+            this.setState(() => ({
+                error
+            }));
         }
         e.target.elements.option.value = '';
     }

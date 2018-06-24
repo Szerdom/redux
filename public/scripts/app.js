@@ -35,6 +35,11 @@ var IndecisionApp = function (_React$Component) {
             } else if (this.state.options.indexOf(value) > -1) {
                 return 'value exists';
             }
+            /*this.setState((prevState) => {
+                return {
+                    options: [...prevState.options, value]
+                }
+            });*/
             this.setState(function (prevState) {
                 return {
                     options: [].concat(_toConsumableArray(prevState.options), [value])
@@ -44,6 +49,12 @@ var IndecisionApp = function (_React$Component) {
     }, {
         key: 'handleDeleteOptions',
         value: function handleDeleteOptions() {
+            /*this.setState(() => {
+                return {
+                    options: []
+                };
+            });*/
+
             this.setState(function () {
                 return {
                     options: []
@@ -187,8 +198,13 @@ var AddOption = function (_React$Component2) {
             var value = e.target.elements.option.value.trim();
             var error = this.props.handleAddOption(value);
             if (error) {
+                /*this.setState(() => {
+                    return { error };
+                });*/
                 this.setState(function () {
-                    return { error: error };
+                    return {
+                        error: error
+                    };
                 });
             }
             e.target.elements.option.value = '';
