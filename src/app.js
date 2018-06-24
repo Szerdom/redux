@@ -5,7 +5,7 @@ class IndecisionApp extends React.Component{
         this.handleAddOption = this.handleAddOption.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.state = {
-            options: []
+            options: this.props.options
         }
     }
 
@@ -170,4 +170,4 @@ const Option = (props) => {
     }
 }*/
 
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
+ReactDOM.render(<IndecisionApp options={[]}/>, document.getElementById('app'));
