@@ -5,7 +5,7 @@ import Action from './Action';
 import Options from './Options';
 import OptionModal from './OptionModal';
 
-export default class IndecisionApp extends React.Component{
+export default class IndecisionApp extends React.Component {
     state = {
         options: [],
         selectedOption: undefined
@@ -18,12 +18,12 @@ export default class IndecisionApp extends React.Component{
     }
 
     handleAddOption = (value) => {
-        if(!value){
+        if (!value) {
             return 'no value';
-        } else if (this.state.options.indexOf(value) > -1){
+        } else if (this.state.options.indexOf(value) > -1) {
             return 'value exists';
         }
-        
+
         this.setState((prevState) => ({
             options: [...prevState.options, value]
         }));
@@ -51,13 +51,13 @@ export default class IndecisionApp extends React.Component{
         }));
     }
 
-    componentDidMount(){
+    componentDidMount() {
         try {
             const json = localStorage.getItem('options');
             const options = JSON.parse(json);
 
-            if(options){
-                this.setState(() => ({options}));
+            if (options) {
+                this.setState(() => ({ options }));
             }
         }
         catch (e) {
@@ -65,8 +65,8 @@ export default class IndecisionApp extends React.Component{
         }
     }
 
-    componentDidUpdate(prevProps, prevState){
-        if(prevState.options.length !== this.state.options.length){
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.options.length !== this.state.options.length) {
             const json = JSON.stringify(this.state.options);
             localStorage.setItem('options', json);
         }
@@ -77,18 +77,24 @@ export default class IndecisionApp extends React.Component{
         const subtitle = 'podtytul';
         return (
             <div>
-                <Header title={title} subtitle={subtitle}/>
-                <Action hasOption={this.state.options.length > 0}
-                        handlePick={this.handlePick}/>
-                <Options 
-                    options={this.state.options}
-                    handleDeleteOptions={this.handleDeleteOptions}
-                    handleDeleteOption={this.handleDeleteOption}
-                />
-                <AddOption options={this.state.options}
-                        handleAddOption={this.handleAddOption}/>
-                <OptionModal 
-                    selectedOption={this.state.selectedOption} 
+                <Header title={title} subtitle={subtitle} />
+                <div className="container">
+                    <Action
+                        hasOption={this.state.options.length > 0}
+                        handlePick={this.handlePick}
+                    />
+                    <div className="widget">
+                        <Options
+                            options={this.state.options}
+                            handleDeleteOptions={this.handleDeleteOptions}
+                            handleDeleteOption={this.handleDeleteOption}
+                        />
+                        <AddOption options={this.state.options}
+                            handleAddOption={this.handleAddOption} />
+                    </div>
+                </div>
+                <OptionModal
+                    selectedOption={this.state.selectedOption}
                     handleClearSelectedOption={this.handleClearSelectedOption}
                 />
             </div>
