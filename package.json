@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Szerdom/react.git"
+    "url": "git+https://github.com/Szerdom/redux.git"
   },
   "author": "Dominik Szeremeta",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Szerdom/react/issues"
+    "url": "https://github.com/Szerdom/redux/issues"
   },
-  "homepage": "https://github.com/Szerdom/react#readme",
+  "homepage": "https://github.com/Szerdom/redux#readme",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
