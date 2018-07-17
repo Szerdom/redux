@@ -5,10 +5,10 @@ const filtersReducerDefaultState = {
     sortBy: 'date',
     startDate: moment().startOf('month'),
     endDate: moment().endOf('month'),
-}
+};
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
-    switch(action.type){
+    switch (action.type) {
         case 'SET_TEXT_FILTER':
             return {
                 ...state,
@@ -28,10 +28,10 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
             return {
                 ...state,
                 endDate: action.endDate
-            }
+            };
         default:
             return state;
     }
-}
+};
 
 export default filtersReducer;
