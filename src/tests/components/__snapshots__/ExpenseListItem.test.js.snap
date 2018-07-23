@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shoud render ExpenseListItem 1`] = `
+<div>
+  <NavLink
+    activeClassName="active"
+    aria-current="page"
+    to="/edit/undefined"
+  >
+    <h3 />
+  </NavLink>
+  <p>
+     - 
+  </p>
+</div>
+`;

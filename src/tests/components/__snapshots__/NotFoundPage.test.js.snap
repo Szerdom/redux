@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render NotFoundPage 1`] = `
+<div>
+  not found component - 
+  <NavLink
+    activeClassName="active"
+    aria-current="page"
+    to="/"
+  >
+    Go home
+  </NavLink>
+</div>
+`;
