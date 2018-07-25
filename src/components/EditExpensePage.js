@@ -5,21 +5,22 @@ import { editExpense, removeExpense } from '../actions/expenses';
 
 export class EditExpensePage extends React.Component {
     onSubmit = (expense) => {
-        this.props.dispatch(editExpense(this.props.expense.id, expense));
+        this.props.editExpense(this.props.expense.id, expense);
         this.props.history.push("/");
     }
-    removeExpense = () => {
-        this.props.dispatch(removeExpense({ id: this.props.expense.id }));
+    onRemove = () => {
+        this.props.removeExpense({ id: this.props.expense.id });
         this.props.history.push("/");
     }
     render() {
         return (
             <div>
                 <ExpenseForm
+                    expense={this.props.expense}
                     onSubmit={this.onSubmit}
                 />
                 <button
-                    onClick={this.removeExpense}
+                    onClick={this.onRemove}
                 >Remove</button>
             </div>
         );
@@ -32,10 +33,10 @@ const mapStateToProps = (state, props) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
     return {
-        editExpense: (expense) => dispatch(editExpense(expense.id, expense)),
-        removeExpense: (expense) => dispatch(removeExpense({ id: expense.id }))
+        editExpense: (id, expense) => dispatch(editExpense(id, expense)),
+        removeExpense: (data) => dispatch(removeExpense(data))
     };
 };
 
