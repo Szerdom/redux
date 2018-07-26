@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --config=jest.config.json",
     "serve": "live-server public/",
-    "build": "webpack",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server"
   },
   "repository": {
@@ -61,6 +62,7 @@
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.10.0"
+    "eslint-plugin-react": "^7.10.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0"
   }
 }

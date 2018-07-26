@@ -1,31 +1,47 @@
 const path = require('path');
-
-module.exports = {
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+module.exports = (env) => {
+  const isProduction = env === 'production';
+  const CSSExtract = new ExtractTextPlugin('styles.css');
+  return {
     entry: './src/app.js',
     output: {
-        path: path.join(__dirname, 'public'),
-        filename: 'bundle.js'
+      path: path.join(__dirname, 'public'),
+      filename: 'bundle.js'
     },
     module: {
-        rules: [
+      rules: [{
+        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/
+      }, {
+        test: /\.s?css$/,
+        use: CSSExtract.extract({
+          use: [
             {
-                loader: 'babel-loader',
-                test: /\.js$/,
-                exclude: /node_modules/
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
             },
             {
-                test: /\.s?css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
             }
-        ]
+          ]
+        })
+      }]
     },
-    devtool: 'cheap-module-eval-source-map',
+    plugins: [
+      CSSExtract
+    ],
+    mode: 'development',
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'public'),
-        historyApiFallback: true
+      contentBase: path.join(__dirname, 'public'),
+      historyApiFallback: true
     }
+  };
 };
