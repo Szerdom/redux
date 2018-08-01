@@ -14,6 +14,9 @@ console.log('Before');
 promise.then((data) => {
     console.log(data);
 })
+.then(() => {
+    console.log('Does it run?');
+})
 .catch((error) => {
     console.log('error', error);
 });
